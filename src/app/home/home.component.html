@@ -1,0 +1,482 @@
+<header>
+  <p routerLink="/">Home</p>
+  <p routerLink="/add">Add</p>
+  <p routerLink="/history">History</p>
+</header>
+<hr>
+
+<div class="container">
+  @if(isSet){
+  <div class="top">
+    <hr class="topHr">
+    @if(!isCommentry){
+    <button (click)="isCommentryorScorecard()">Full Scorecard</button>
+    }@else{
+    <button (click)="isCommentryorScorecard()">Commentry</button>
+    }
+    <h1>{{team1.name}}</h1>
+    <h2>Vs.</h2>
+    <h1>{{team2.name}}</h1>
+    <button (click)="reset()">Reset</button>
+    <hr class="topHr">
+    @if(isBowler == "false"){
+    <select name="batsman1Id" [(ngModel)]="batsman1Id">
+      <option value="" selected disabled hidden>Select Batsman 1</option>
+      @for (item of team1Player; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <select name="batsman2Id" [(ngModel)]="batsman2Id">
+      <option value="" selected disableda hidden>Select Batsman 2</option>
+      @for (item of team1Player; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <button (click)="batsmanDone()">Ok</button>
+    }@else if(isBowler == 'true') {
+    <select name="bowlerId" [(ngModel)]="bowlerId">
+      <option value="" selected disableda hidden>Select Bowler</option>
+      @for (item of team2Bowlers; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <button (click)="bowlerDone()">Ok</button>
+    }
+  </div>
+  }@else {
+  <div class="top2">
+    <select name="team1Id" [(ngModel)]="team1Id">
+      <option value="" selected disabled hidden>Batting Team </option>
+      @for (item of teamList; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <select name="team2Id" [(ngModel)]="team2Id">
+      <option value="" selected disabled hidden>Bowling Team</option>
+      @for (item of teamList; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <button (click)="setMatch()">Set Match</button>
+  </div>
+  }
+  <hr>
+
+  <div class="bottom">
+    @if(isCommentry){
+    <div class="left">
+      <div class="header">
+        <h1>{{team1.name}} @if(target == 0){<span>(1st inning)</span>}@else {<span>Target : {{target}}</span>}</h1>
+      </div>
+      <hr>
+      <div class="player">
+        <h3 class="name">Name</h3>
+        <hr>
+        <h3>Run</h3>
+        <hr>
+        <h3>Ball</h3>
+        <hr>
+        <h3>4s</h3>
+        <hr>
+        <h3>6s</h3>
+        <hr>
+        <h3>SR.</h3>
+      </div>
+      <hr>
+      @for (item of team1Player; track $index) {
+      <div class="player">
+        <div class="name">
+          <h3 class="">{{item.name}}@if(item.id==batsman1Id || item.id == batsman2Id){*}</h3>
+          @if(item.isOut=='yes'){
+          @if(item.catchBy){
+          <h6 class="fifty">C. {{item.catchBy}}</h6>
+          <h6 class="fifty">B. {{item.outBy}}</h6>
+          }@else if(item.runOutBy){
+          <h6 class="yettobat">Run out. {{item.runOutBy}}</h6>
+          }@else if(outType=='lbw'){
+          <h6 class="yettobat">LBW. {{item.outBy}}</h6>
+          }@else{
+          <h6 class="yettobat">B. {{item.outBy}}</h6>
+          }
+          }
+        </div>
+        <hr>
+        @if(item.isOut == ''){
+        <h3 class="yettobat">Yet to Bat</h3>
+        }
+        <!-- @else if(item.isOut == 'yes'){
+
+        } -->
+        @else if(item.isOut == 'no' || item.isOut == 'yes'){
+        <h3>{{item.run}}</h3>
+        <hr>
+        <h3>{{item.ball}}</h3>
+        <hr>
+        <h3>{{item.fours}}</h3>
+        <hr>
+        <h3>{{item.sixes}}</h3>
+        <hr>
+        <h3>{{item.sr}}</h3>
+        }
+      </div>
+      <hr>
+      }
+      <div class="header">
+        <h1>{{team2.name}}</h1>
+      </div>
+      <hr>
+      <div class="bowler">
+        <h3 class="name">Name</h3>
+        <hr>
+        <h3>Run</h3>
+        <hr>
+        <h3>Over</h3>
+        <hr>
+        <h3>Extra</h3>
+        <hr>
+        <h3>RR</h3>
+        <hr>
+        <h3>Wicket</h3>
+      </div>
+      <hr>
+      @for (item of team2Bowlers; track $index) {
+      <div class="bowler">
+        <h3 class="name">{{item.name}}@if(item.id==bowler.id){*}</h3>
+        <hr>
+        <h3>{{item.runGiven}}</h3>
+        <hr>
+        <h3>{{item.over}}.{{item.overBall}}</h3>
+        <hr>
+        <h3>{{item.extra}}</h3>
+        <hr>
+        <h3>{{item.rr}}</h3>
+        <hr>
+        <h3>{{item.wicketTaken}}</h3>
+      </div>
+      <hr>
+      }
+    </div>
+    <hr>
+    <div class="mid">
+      <div class="header">
+        <h1>{{team2.name}} @if(innig == "second"){<span>(1st inning)</span>}@else {<span>Projected Score : {{overAllRR *
+            2}}</span>} <span></span> </h1>
+      </div>
+      <hr>
+      <div class="player">
+        <h3 class="name">Name</h3>
+        <hr>
+        <h3>Run</h3>
+        <hr>
+        <h3>Ball</h3>
+        <hr>
+        <h3>4s</h3>
+        <hr>
+        <h3>6s</h3>
+        <hr>
+        <h3>SR.</h3>
+      </div>
+      <hr>
+      @for (item of team2Player; track $index) {
+      <div class="player">
+        <h3 class="name">{{item.name}}@if(item.id==batsman1Id || item.id == batsman2Id){*}
+          @if(item.isOut=='yes'){
+          @if(item.catchBy){
+          <h6 class="fifty">C. {{item.catchBy}}</h6>
+          <h6 class="fifty">B. {{item.outBy}}</h6>
+          }@else if(item.runOutBy){
+          <h6 class="yettobat">Run out. {{item.runOutBy}}</h6>
+          }@else if(outType=='lbw'){
+          <h6 class="yettobat">LBW. {{item.outBy}}</h6>
+          }@else{
+          <h6 class="yettobat">B. {{item.outBy}}</h6>
+          }
+          }
+        </h3>
+        <hr>
+        @if(item.isOut == ''){
+        <h3 class="yettobat">Yet to Bat</h3>
+        }@else if(item.isOut == 'no' || item.isOut == 'yes'){
+        <h3>{{item.run}}</h3>
+        <hr>
+        <h3>{{item.ball}}</h3>
+        <hr>
+        <h3>{{item.fours}}</h3>
+        <hr>
+        <h3>{{item.sixes}}</h3>
+        <hr>
+        <h3>{{item.sr}}</h3>
+        }
+      </div>
+      <hr>
+      }
+      <div class="header">
+        <h1>{{team1.name}}</h1>
+      </div>
+      <hr>
+      <div class="bowler">
+        <h3 class="name">Name</h3>
+        <hr>
+        <h3>Run</h3>
+        <hr>
+        <h3>Over</h3>
+        <hr>
+        <h3>Extra</h3>
+        <hr>
+        <h3>RR</h3>
+        <hr>
+        <h3>Wicket</h3>
+      </div>
+      <hr>
+      @for (item of team1Bowlers; track $index) {
+      <div class="bowler">
+        <h3 class="name">{{item.name}}@if(item.id==bowler.id){*}</h3>
+        <hr>
+        <h3>{{item.runGiven}}</h3>
+        <hr>
+        <h3>{{item.over}}.{{item.overBall}}</h3>
+        <hr>
+        <h3>{{item.extra}}</h3>
+        <hr>
+        <h3>{{item.rr}}</h3>
+        <hr>
+        <h3>{{item.wicketTaken}}</h3>
+      </div>
+      <hr>
+      }
+    </div>
+    <hr>
+    }
+
+    @else {
+    <div class="left2">
+      <div class="score">
+        <h3>Score : {{score}}/{{totalWicket}} </h3>
+        <h3>Extra : {{extra}} </h3>
+        <h3>RR : {{overAllRR}} </h3>
+        <h3>Over : {{over}}.{{leagalBall}} </h3>
+        <h3>Partnership : {{currentPartnerShip.run}} ({{currentPartnerShip.ball}}) </h3>
+        @if(innig=='second'){
+        <h3>Required RR : {{requiredRR}} </h3>
+        }
+      </div>
+      <hr>
+      <div class="score">
+        <h1>{{team1.name}} <span>is batting</span></h1>
+      </div>
+      <hr>
+      @for (item of commentry; track $index) {
+      <div class="singleBox">
+        <span>1</span><p>{{item}}</p>
+      </div>
+      <hr>
+      }
+
+    </div>
+    <hr>
+    }
+
+    <div class="right">
+      <div class="over">
+        @for (item of contArr; track $index) {
+        <div class="ball">
+          {{item}}
+        </div>
+        }
+      </div>
+      <hr>
+      <div class="score">
+        <h3>Score : {{score + extra}}/{{totalWicket}} </h3>
+        <h3>Extra : {{extra}} </h3>
+        <h3>RR : {{overAllRR}} </h3>
+        <h3>Over : {{over}}.{{leagalBall}} </h3>
+        @if(innig=='second'){
+        <h3>Required RR : {{requiredRR}} </h3>
+        }
+      </div>
+      <hr>
+      <div class="possible">
+        <button (click)="zero()">0</button>
+        <button (click)="one()">1</button>
+        <button (click)="two()">2</button>
+        <button (click)="three()">3</button>
+        <button (click)="four()">4</button>
+        <button (click)="six()">6</button>
+        <button (click)="wide()">Wide</button>
+        <button (click)="noBall()">No Ball</button>
+        <button (click)="out()">Out</button>
+        <!-- <button>Run Out</button>
+        <button>LBW</button>
+        <button>Bold</button> -->
+      </div>
+      <hr>
+      <div class="batsman">
+        <h3>Batsman</h3>
+        <hr>
+        <div class="player">
+          <h3 class="name">Name</h3>
+          <hr>
+          <h3>Run</h3>
+          <hr>
+          <h3>Ball</h3>
+          <hr>
+          <h3>4s</h3>
+          <hr>
+          <h3>6s</h3>
+          <hr>
+          <h3>SR.</h3>
+        </div>
+        <hr>
+        <div class="player">
+          <h3 class="name">{{batsMan1.name}}@if(batsMan1.strike){*}</h3>
+          <hr>
+          <h3>{{batsMan1.run}}</h3>
+          <hr>
+          <h3>{{batsMan1.ball}}</h3>
+          <hr>
+          <h3>{{batsMan1.fours}}</h3>
+          <hr>
+          <h3>{{batsMan1.sixes}}</h3>
+          <hr>
+          <h3>{{batsMan1.sr}}</h3>
+        </div>
+        <hr>
+        <div class="player">
+          <h3 class="name">{{batsMan2.name}}@if(batsMan2.strike){*}</h3>
+          <hr>
+          <h3>{{batsMan2.run}}</h3>
+          <hr>
+          <h3>{{batsMan2.ball}}</h3>
+          <hr>
+          <h3>{{batsMan2.fours}}</h3>
+          <hr>
+          <h3>{{batsMan2.sixes}}</h3>
+          <hr>
+          <h3>{{batsMan2.sr}}</h3>
+        </div>
+        <hr>
+      </div>
+      <div class="batsman">
+        <h3>Bowler</h3>
+        <hr>
+        <div class="player">
+          <h3 class="name">Name</h3>
+          <hr>
+          <h3>Run</h3>
+          <hr>
+          <h3>Over</h3>
+          <hr>
+          <h3>Extra</h3>
+          <hr>
+          <h3>RR</h3>
+          <hr>
+          <h3>Wicket</h3>
+        </div>
+        <hr>
+        <div class="player">
+          <h3 class="name">{{bowler.name}}</h3>
+          <hr>
+          <h3>{{bowler.runGiven}}</h3>
+          <hr>
+          <h3>{{bowler.over}}.{{bowler.overBall}}</h3>
+          <hr>
+          <h3>{{bowler.extra}}</h3>
+          <hr>
+          <h3>{{bowler.rr}}</h3>
+          <hr>
+          <h3>{{bowler.wicketTaken}}</h3>
+        </div>
+        <hr>
+
+      </div>
+      <div class="batsman">
+        <h3>Partnerships</h3>
+        <hr>
+        @for (item of partnershipList; track $index) {
+        <div class="partner">
+          <div>{{item.player1}} {{item.player1run}}({{item.player1ball}})</div>
+          <div> {{item.run}}({{item.ball}})</div>
+          <div>{{item.player2}} {{item.player2run}}({{item.player2ball}})</div>
+        </div>
+        <hr>
+        }
+        <div class="partner">
+          <div>{{currentPartnerShip.player1}} {{currentPartnerShip.player1run}}({{currentPartnerShip.player1ball}})
+          </div>
+          <div> {{currentPartnerShip.run}}({{currentPartnerShip.ball}})</div>
+          <div>{{currentPartnerShip.player2}} {{currentPartnerShip.player2run}}({{currentPartnerShip.player2ball}})
+          </div>
+        </div>
+        <hr>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+@if(isShow){
+<div class="isShow">
+  <div class="select">
+    <select name="newBowlerId" [(ngModel)]="newBowlerId">
+      <option value="" selected disabled hidden>Select new bowler</option>
+      @for (item of team2Bowlers; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    <button (click)="newBowler()">Ok</button>
+  </div>
+</div>
+}
+
+@if(isShow2){
+<div class="isShow">
+  <div class="select">
+    <select name="noBallRun" [(ngModel)]="noBallRun">
+      <option value="" selected disabled hidden>Select Run On No Ball</option>
+      <option value=0>0</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=4>4</option>
+      <option value=6>6</option>
+    </select>
+    <button (click)="noBall2()">Ok</button>
+  </div>
+</div>
+}
+
+@if(isShow3){
+<div class="isShow">
+  <div class="select">
+    <select name="outType" [(ngModel)]="outType">
+      <option value="" selected disabled hidden>Select Out Type</option>
+      <option value=bold>Bold</option>
+      <option value=lbw>LBW</option>
+      <option value=catchout>Catch Out</option>
+      <option value=runout>RunOut</option>
+    </select>
+    <select name="batsman3Id" [(ngModel)]="batsman3Id">
+      <option value="">New Batsman</option>
+      @for (item of team1Player; track $index) {
+      <option value={{item.id}}>{{item.name}}</option>
+      }
+    </select>
+    @if(outType=='catchout'){
+    <select name="catchBy" [(ngModel)]="catchBy">
+      <option value="" selected disabled hidden>Catch By</option>
+      @for (item of team2Player; track $index) {
+      <option value={{item.name}}>{{item.name}}</option>
+      }
+    </select>
+    }
+    @if(outType=='runout'){
+    <select name="runOutby" [(ngModel)]="runOutby">
+      <option value="" selected disabled hidden>Run Out By</option>
+      @for (item of team2Player; track $index) {
+      <option value={{item.name}}>{{item.name}}</option>
+      }
+    </select>
+    }
+    <button (click)="out2()">Ok</button>
+  </div>
+</div>
+}

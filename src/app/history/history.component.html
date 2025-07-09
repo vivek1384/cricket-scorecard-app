@@ -1,0 +1,38 @@
+<header>
+  <p routerLink="/">Home</p>
+  <p routerLink="/add">Add</p>
+  <p routerLink="/history">History</p>
+</header>
+<hr>
+
+<div class="container">
+  <div class="cards">
+    @for (item of matchList; track $index) {
+    <div class="card" (click)="onClick(item)">
+      <div class="header">
+        <h1> <span>Match</span> : {{item.team2}} <span class="span">VS.</span> {{item.team1}}</h1>
+      </div>
+      <div class="body">
+        <h3>{{item.team2}} 1st Batting : {{item.score1}} ({{item.over1}})</h3>
+        <h3>{{item.team1}} 2nd Batting : {{item.score2}} ({{item.over2}})</h3>
+        <h3>Date : {{item.date | date: 'dd/MM/yyyy'}} | Time : {{item.date | date:'hh:mm'}}</h3>
+        <h2>Winner : {{item.winner}}</h2>
+      </div>
+    </div>
+    }
+
+  </div>
+
+</div>
+
+@if(isShow){
+<div class="isShow">
+  @for (item of match.commentry; track $index) {
+  <div class="singleBox">
+    <p>{{item}}</p>
+    <hr>
+  </div>
+  }
+  <button (click)="close()">Close</button>
+</div>
+}

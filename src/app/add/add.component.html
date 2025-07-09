@@ -1,0 +1,49 @@
+<header>
+  <p routerLink="/">Home</p>
+  <p routerLink="/add">Add</p>
+  <p routerLink="/history">History</p>
+</header>
+<hr>
+<div class="container">
+  <div class="form">
+    <input type="text" name="name" [(ngModel)]="player.name" placeholder="Enter Player Name">
+    <select type="text" name="team" [(ngModel)]="player.team">
+      <option value="" selected disabled hidden>Select Team</option>
+      @for (item of teamList; track $index) {
+        <option value={{item.name}}>{{item.name}}</option>
+      }
+    </select>
+    <select type="text" name="role" [(ngModel)]="player.role">
+      <option value="" selected disabled hidden>Enter Batting style</option>
+      <option value="Right Hand Batsman">Right Hand BatsMan</option>
+      <option value="Left Hand Batsman">Left Hand BatsMan</option>
+    </select>
+    <select type="text" name="isKeeper" [(ngModel)]="player.isKeeper">
+      <option value="" selected disabled hidden>Is Keeper</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    @if(player.isKeeper == 'no'){
+    <select type="text" name="isBowler" [(ngModel)]='player.isBowler'>
+      <option value="" selected disabled hidden>Is Bowler</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  }@if(player.isBowler){
+    <select type="text" name="role2" [(ngModel)]="player.role2">
+      <option value="" selected disabled hidden>Enter Bowling Style</option>
+      <option value="Right Off Spin">Right Off Spin</option>
+      <option value="Left Arm Spin">Left Arm Spin</option>
+      <option value="Leg Spin">Leg Spin</option>
+      <option value="Chinaman">Chinaman</option>
+      <option value="Mistery Spin">Mistery Spin</option>
+      <option value="Right Arm Medium">Right Arm Medium</option>
+      <option value="Left Arm Medium">Left Arm Medium</option>
+      <option value="Right Arm Fast">Right Arm Fast</option>
+      <option value="Left Arm Fast  ">Left Arm Fast</option>
+    </select>
+  }
+    <button (click)="addPlayer()">Add Player</button>
+  </div>
+
+</div>

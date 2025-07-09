@@ -1,0 +1,305 @@
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 2.5rem;
+    gap: 2.5rem;
+    background: rgb(243, 243, 246);
+}
+
+header p {
+    color: blue;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid blue;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    height: calc(100vh - 44px);
+    width: 100vw;
+    background: rgb(243, 243, 246);
+    display: flex;
+    flex-direction: column;
+}
+
+.top, .top2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* height: 20px; */
+    width: 95%;
+    margin: 8px auto;
+    gap: 1rem;
+    color: blue;
+}
+
+.top select, .top2 select {
+    width: 15%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 5px;
+    padding-left: 15px;
+    border-bottom: 2px solid blue;
+    color: blue;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.top button, .top2 button {
+    width: 10%;
+    background: transparent;
+    border: none;
+    border: 2px solid blue;
+    color: blue;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.top button:hover, .top2 button:hover {
+    color: rgb(243, 243, 246);
+    background: blue;
+}
+
+.top h2, .top2 h2 {
+    margin-top: 8px;
+}
+
+.top2 select{
+    width: 40%;
+}
+.top2 button{
+    width: 20%;
+}
+
+.topHr{
+    height: 140%;
+    margin-top: -8px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* gap: 1rem; */
+}
+
+.bottom .left,
+.bottom .mid,
+.bottom .right {
+    width: 34%;
+    height: calc(87vh + 2px);
+}
+
+.bottom .left .header, .bottom .mid .header{
+    text-align: center;
+    color: blue;
+}
+.bottom .left .header span, .bottom .mid .header span{
+    font-size: 18px;
+}
+
+
+.player{
+    display: flex;
+    flex-direction: row;
+}
+
+.player h3{
+    width: 13%;
+    text-align: center;
+    padding: 2px;
+    color: blue;
+}
+.player .name{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+.player .name h3{
+    width: 100%;
+    text-align: center;
+}
+
+.player .name h6{
+    color: blue;
+    text-align: center;
+}
+
+.player .yettobat{
+    width: 70%;
+}
+
+.bowler{
+    display: flex;
+    flex-direction: row;
+}
+
+.bowler h3{
+    width: 13%;
+    text-align: center;
+    padding: 2px;
+    color: blue;
+}
+
+.bowler .name{
+    width: 35%;
+}
+
+.over{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.over .ball{
+    margin-top: 11px;
+    margin-bottom: 10px;
+    width: 2.5rem;
+    height: 2.5rem;
+    /* border: 2px solid blue; */
+    box-shadow: 1px 1px 7px 2px gray;
+    border-radius: 50%;
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.score{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px 0;
+    color: blue;
+}
+
+.possible{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.possible button{
+    margin: 5px;
+    background: transparent;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 4px;
+    color: blue;
+    border: 2px solid blue;
+}
+
+.possible button:hover{
+    color: rgb(243, 243, 246);
+    background: blue;
+}
+
+.batsman h3{
+    color: blue;
+    text-align: center;
+    margin: 4px;
+}
+
+.isShow{
+    position: absolute;
+    right: 0;
+    top: 163px;
+    width: calc(33vw + 4px);
+    /* border: 2px solid blue; */
+    height: calc(37vh - 9px);
+    backdrop-filter: blur(8px);
+}
+
+.isShow .select{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    margin-top: 2.5rem;
+    gap: 2rem;
+}
+
+.isShow select{
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+    padding: 5px;
+    border-bottom: 2px solid blue;
+}
+
+.isShow button{
+    font-size: 19px;
+    font-weight: bold;
+    color: blue;
+    background: transparent;
+    padding: 5px;
+    border: 2px solid blue;
+}
+
+.isShow button:hover{
+    background: blue;
+    color: rgb(243, 243, 246);
+}
+
+.left2{
+    width: 66%;
+    height: 87vh;
+    overflow: scroll;
+}
+
+.score h1 span{
+    color: rgb(142, 142, 208);
+    font-size: 21px;
+}
+
+/* .left2 .singleBox{
+     padding: 5px;
+    color: blue; 
+} */
+
+.left2 p{
+    padding: 8px;
+    /* padding-left: 20px; */
+    color: blue;
+    font-size: 17px;
+    margin-top: 7px;
+}
+.left2 .singleBox span{
+    padding: 4px 10px;
+    margin: 5px;
+    margin-left: 20px;
+    color: rgb(243, 243, 246);
+    font-size: 24px;
+    border: 2px solid blue;
+    border-radius: 50%;
+    background: blue;
+}
+
+.partner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: blue;
+    padding: 5px;
+}
+
+.singleBox{
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}

@@ -1,0 +1,117 @@
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 2.5rem;
+    gap: 2.5rem;
+    background: rgb(243, 243, 246);
+}
+
+header p {
+    color: blue;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid blue;
+}
+
+.container {
+    height: calc(100vh - 44px);
+    width: 100vw;
+    background: rgb(243, 243, 246);
+    display: flex;
+    flex-direction: row;
+}
+
+.cards {
+    width: 70%;
+    margin: 1rem auto;
+    border: 2px solid blue;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    overflow-y: scroll;
+    gap: 1rem;
+}
+
+.card {
+    /* border: 1px solid blue; */
+    box-shadow: 0px 0px 10px 1px blue;
+    width: 70%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 8px;
+    height: 130px;
+    cursor: pointer;
+}
+
+.card h1 {
+    color: blue;
+    text-align: center;
+}
+
+.card h1 span {
+    color: rgb(149, 149, 226);
+}
+
+.card h1 .span {
+    font-size: 20px;
+}
+
+.card .body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card .body h3 {
+    color: rgb(104, 104, 216);
+    text-align: center;
+}
+
+.card .body h2{
+    color: rgb(49, 49, 227);
+    text-align: center;
+}
+
+.isShow{
+    width: 50%;
+    height: 86vh;
+    overflow-y: scroll;
+    backdrop-filter: blur(15px);
+    position: absolute;
+    left: 382px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    /* border: 2px solid blue; */
+}
+
+.isShow p{
+    padding: 8px;
+    padding-left: 20px;
+    color: blue;
+    font-size: 17px;
+}
+
+.isShow button{
+    width: 50%;
+    font-size: 18px;
+    color: blue;
+    background: transparent;
+    border: 2px solid blue;
+    padding: 7px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.isShow button:hover{
+    color: rgb(243, 243, 246);
+    background: blue;
+}

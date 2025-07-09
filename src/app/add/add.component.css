@@ -1,0 +1,78 @@
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 2.5rem;
+    gap: 2.5rem;
+    background: rgb(243, 243, 246);
+}
+
+header p {
+    color: blue;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid blue;
+}
+
+.container {
+    height: calc(100vh - 44px);
+    width: 100vw;
+    background: rgb(243, 243, 246);
+    display: flex;
+    flex-direction: row;
+}
+
+.container .form{
+    width: 50%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 2px solid blue;
+    height: 70vh;
+    padding-top: 5rem;
+}
+
+input , select {
+
+    width: 50%;
+    background: transparent;
+    font-size: 19px;
+    margin: 0 auto;
+    padding: 5px;
+    border: none;
+    outline: none;
+    color: blue;
+    border-bottom: 2px solid blue;
+    padding-left: 15px;
+}
+
+input::placeholder{
+    color: blue;
+    opacity: 0.7;
+}
+
+select{
+    width: calc(50% + 10px);
+    padding-left: 5px;
+}
+
+button{
+    width: 70%;
+    margin: 1rem auto;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    color: blue;
+    background: transparent;
+    border: 2px solid blue;
+    cursor: pointer;
+}
+
+button:hover{
+    color: rgb(243, 243, 246);
+    background: blue;
+}

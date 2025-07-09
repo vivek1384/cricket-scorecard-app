@@ -1,0 +1,109 @@
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 2.5rem;
+    gap: 2.5rem;
+    background: rgb(243, 243, 246);
+}
+
+header p {
+    color: blue;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid blue;
+}
+
+.container {
+    height: calc(100vh - 44px);
+    width: 100vw;
+    background: rgb(243, 243, 246);
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    width: 30%;
+}
+
+.left .top {
+    height: 66%;
+}
+
+.left .bottom {
+    height: 34%;
+    display: flex;
+}
+
+.bottom .left1 {
+    width: 50%;
+}
+
+.bottom .right1 {
+    width: 50%;
+}
+
+.left-add {
+    width: 50%;
+}
+
+.right-add {
+    width: 50%;
+}
+
+.left-add h1,
+.right-add h1 {
+    text-align: center;
+    color: blue;
+    margin: 16px 0;
+}
+
+.left-add form,
+.right-add form {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+    border: 2px solid blue;
+}
+
+input {
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    color: blue;
+    padding: 5px;
+    padding-left: 15px;
+    border-bottom: 2px solid blue;
+}
+
+input::placeholder {
+    color: blue;
+    opacity: 0.6;
+}
+
+button {
+    background: transparent;
+    padding: 7px;
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+    border: 2px solid blue;
+}
+button:hover{
+    color: rgb(243, 243, 246);
+    background: blue;
+    cursor: pointer;
+}
