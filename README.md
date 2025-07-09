@@ -113,3 +113,5 @@ And if batsman select option not appear there after selecting teams to set new m
 ```bash
 # Optional: Reset db.json to blank/default state
 ```
+
+## Here is so many bugs (like in partnership, required RR and etc.) also which you have to find out and grab the opportunity to contribute in open source.
